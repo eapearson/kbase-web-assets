@@ -68,16 +68,16 @@ function build_image() {
             exit 2
         fi
     fi
-    echo "COMMIT: $commit"
+    echo "COMMIT: ${commit}"
 
-    local image_tag=kbase/kbase-web-:${branch}
+    local image_tag="${image_base}:${branch}"
 
     docker build \
         --build-arg BUILD_DATE=$date \
         --build-arg VCS_REF=$commit \
         --build-arg BRANCH=$branch \
         --build-arg BUILD=$build \
-        -f $root/tools/docker/Dockerfile \
+        -f $root/Dockerfile \
         -t $image_tag \
         $root
         

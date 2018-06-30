@@ -2,6 +2,7 @@ FROM alpine:3.7
 
 RUN apk upgrade --update-cache --available \
     && apk add --update --nocache \
+        bash=4.4.19-r1 \
         nginx=1.12.2-r3 
 
 RUN archive=dockerize-alpine-linux-amd64-v0.6.1.tar.gz \
@@ -19,7 +20,7 @@ ARG TAG
 
 RUN mkdir -p /kb/module/htdocs
 
-COPY . /kb/module/htdocs
+COPY ./content /kb/module
 
 LABEL org.label-schema.schema-version="1.0.0-rc1" \  
     org.label-schema.build-date=$BUILD_DATE \
